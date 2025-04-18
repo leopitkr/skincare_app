@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../theme/app_theme.dart';
-import 'obd_login.dart';
+import 'obd_signup.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -24,11 +24,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  Future<void> _signUpWithEmail() async {
+  Future<void> _signInWithEmail() async {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
       try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
@@ -80,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   const SizedBox(height: 40),
                   Text(
-                    'Welcome to\nDermAI',
+                    'Welcome Back',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           color: AppTheme.textColor,
                           fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Start your skincare journey today',
+                    'Sign in to continue',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: AppTheme.textColor.withOpacity(0.7),
                         ),
@@ -125,18 +125,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
                       return null;
                     },
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
-                    onPressed: _isLoading ? null : _signUpWithEmail,
+                    onPressed: _isLoading ? null : _signInWithEmail,
                     child: _isLoading
                         ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text('Sign Up'),
+                        : const Text('Login'),
                   ),
                   const SizedBox(height: 24),
                   Row(
@@ -172,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account? ',
+                        'Don\'t have an account? ',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       TextButton(
@@ -180,11 +177,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                              builder: (context) => const SignUpScreen(),
                             ),
                           );
                         },
-                        child: const Text('Login'),
+                        child: const Text('Sign Up'),
                       ),
                     ],
                   ),

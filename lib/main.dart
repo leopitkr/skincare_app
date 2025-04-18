@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'screens/obd_signup.dart';
+import 'firebase_options.dart';
+import 'screens/obd_login.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DermAI',
       theme: AppTheme.lightTheme,
-      home: const SignUpScreen(),
+      home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
