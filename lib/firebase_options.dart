@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
+/// Firebase 앱에서 사용할 기본 [FirebaseOptions]입니다.
 ///
-/// Example:
+/// 예시:
 /// ```dart
 /// import 'firebase_options.dart';
 /// // ...
@@ -26,17 +26,17 @@ class DefaultFirebaseOptions {
         return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'Windows 플랫폼에 대한 DefaultFirebaseOptions가 구성되지 않았습니다 - '
+          'FlutterFire CLI를 다시 실행하여 재구성할 수 있습니다.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'Linux 플랫폼에 대한 DefaultFirebaseOptions가 구성되지 않았습니다 - '
+          'FlutterFire CLI를 다시 실행하여 재구성할 수 있습니다.',
         );
       default:
         throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
+          '이 플랫폼은 DefaultFirebaseOptions를 지원하지 않습니다.',
         );
     }
   }

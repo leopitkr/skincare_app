@@ -54,7 +54,7 @@ class _TermsScreenState extends State<TermsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // 전체 동의
+              // 전체 동의 섹션
               Card(
                 child: CheckboxListTile(
                   title: const Text(
@@ -75,7 +75,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              // 필수 약관
+              // 필수 약관 섹션
               const Text(
                 '필수 약관',
                 style: TextStyle(
@@ -84,7 +84,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              // 서비스 이용약관
+              // 서비스 이용약관 섹션
               Card(
                 child: Column(
                   children: [
@@ -110,7 +110,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              // 개인정보 보호약관
+              // 개인정보 보호약관 섹션
               Card(
                 child: Column(
                   children: [
@@ -136,7 +136,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              // 만14세 이상
+              // 만14세 이상 확인 섹션
               Card(
                 child: CheckboxListTile(
                   title: const Text('만14세 이상입니다 (필수)'),
@@ -151,7 +151,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              // 선택 약관
+              // 선택 약관 섹션
               const Text(
                 '선택 약관',
                 style: TextStyle(
@@ -160,7 +160,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              // 마케팅 활용 동의
+              // 마케팅 활용 동의 섹션
               Card(
                 child: Column(
                   children: [
@@ -186,7 +186,7 @@ class _TermsScreenState extends State<TermsScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              // 다음 버튼
+              // 다음 버튼 섹션
               ElevatedButton(
                 onPressed: _isValid
                     ? () {
