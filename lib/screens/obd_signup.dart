@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../theme/app_theme.dart';
 import 'obd_login.dart';
 
@@ -32,13 +33,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        // Navigate to home screen or show success message
+        // 회원가입 성공 후 홈 화면으로 이동
+        if (mounted) {
+          // 홈 화면으로 이동하는 코드 추가 예정
+        }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(e.toString())),
+          );
+        }
       } finally {
-        setState(() => _isLoading = false);
+        if (mounted) {
+          setState(() => _isLoading = false);
+        }
       }
     }
   }
@@ -46,8 +54,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> _signInWithGoogle() async {
     setState(() => _isLoading = true);
     try {
+      // 웹 플랫폼인 경우 특별한 처리가 필요 없음
+      // FirebaseOptions에 clientId가 설정되어 있으면 자동으로 사용됨
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return;
+      if (googleUser == null) {
+        setState(() => _isLoading = false);
+        return;
+      }
 
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -56,13 +69,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
-      // Navigate to home screen or show success message
+      // 로그인 성공 후 홈 화면으로 이동
+      if (mounted) {
+        // 홈 화면으로 이동하는 코드 추가 예정
+      }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString())),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 

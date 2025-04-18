@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     authDomain: 'dermdbmac.firebaseapp.com',
     storageBucket: 'dermdbmac.firebasestorage.app',
     measurementId: 'G-YX985B46ZW',
+    clientId: '920722403443-vrk7amlojo0oocma0nmobdhni75go647.apps.googleusercontent.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
